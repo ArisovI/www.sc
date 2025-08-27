@@ -1,7 +1,8 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../context/auth-context";
-import { Navigate } from "react-router-dom";
-import { api } from "../../api/api";
+import { Navigate, Outlet } from "react-router-dom";
+import Sidebar from "../../components/Sidebar";
+import Header from "../../components/header";
 
 const Admin = () => {
   const { isAuth } = useContext(AuthContext);
@@ -10,12 +11,13 @@ const Admin = () => {
     return <Navigate to="/login" replace />;
   }
 
-  useEffect(() => {
-    const res = api("/positions");
-    console.log(res);
-  }, []);
-
-  return <div>Admin</div>;
+  return (
+    <div>
+      <Header />
+      <Sidebar />
+      <Outlet />
+    </div>
+  );
 };
 
 export default Admin;

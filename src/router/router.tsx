@@ -3,6 +3,7 @@ import Login from "../pages/auth/login";
 import Admin from "../pages/admin/admin";
 import Register from "../pages/auth/register";
 import Home from "../pages/client/home";
+import Posotion from "../pages/admin/posotion";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,11 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: <Admin />,
-    children: [],
+    children: [
+      {
+        path: "positions",
+        element: <Posotion />,
+      },
+    ],
   },
 ]);
