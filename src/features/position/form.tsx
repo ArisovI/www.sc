@@ -4,14 +4,12 @@ import { modals } from "@mantine/modals";
 
 type Props = {
   submitFn: (body) => Promise<void>;
+  initialValues?: any;
 };
 
-const FormPosition = ({ submitFn }: Props) => {
+const FormPosition = ({ submitFn, initialValues }: Props) => {
   const form = useForm({
-    initialValues: {
-      name: { kk: "", uz: "", ru: "", en: "" },
-      description: { kk: "", uz: "", ru: "", en: "" },
-    },
+    initialValues,
   });
 
   const handleSubmit = async (values: typeof form.values) => {
@@ -69,7 +67,7 @@ const FormPosition = ({ submitFn }: Props) => {
 
         <Flex justify={"end"} gap={10}>
           <Button onClick={() => modals.closeAll()}>Отмена</Button>
-          <Button type="submit">Создать</Button>
+          <Button type="submit">Сохранить</Button>
         </Flex>
       </Stack>
     </form>

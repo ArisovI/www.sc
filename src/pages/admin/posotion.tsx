@@ -28,9 +28,9 @@ const Posotion = () => {
     });
   }
 
-  function updateFn(el) {
+  function updateFn(id: number) {
     modals.open({
-      children: <UpdatePosition element={el} />,
+      children: <UpdatePosition id={id} />,
       title: "Обновление",
     });
   }
@@ -49,9 +49,9 @@ const Posotion = () => {
               style={{ border: "1px solid gray", padding: 10, borderRadius: 5 }}
             >
               <Flex gap={20} align={"center"}>
-                {el.name}
+                {el.name.ru}
                 <Button onClick={() => deleteFn(el.id)}>Delete</Button>
-                <Button onClick={() => updateFn(el)}>Update</Button>
+                <Button onClick={() => updateFn(el.id)}>Update</Button>
               </Flex>
             </li>
           ))}
