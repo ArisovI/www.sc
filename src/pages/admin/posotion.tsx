@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 import { api } from "../../api/api";
+import { Button, Flex, Stack, Title } from "@mantine/core";
+import { modals } from "@mantine/modals";
+import DeletePosition from "../../features/position/delete";
+import CreatePosition from "../../features/position/create";
+import UpdatePosition from "../../features/position/update";
 
 const Posotion = () => {
   const [positions, setPositions] = useState([]);
@@ -12,19 +17,47 @@ const Posotion = () => {
     getPosotions();
   }, []);
 
+  function deleteFn(id: number) {
+    modals.open({ children: <DeletePosition id={id} />, title: "Удаление" });
+  }
+
+  function createFn() {
+    modals.open({
+      children: <CreatePosition />,
+      title: "Создание",
+    });
+  }
+
+  function updateFn(el) {
+    modals.open({
+      children: <UpdatePosition element={el} />,
+      title: "Обновление",
+    });
+  }
+
   return (
-    <div>
-      <h1>Positions</h1>
+    <Stack p={20} w="100%">
+      <Flex justify={"space-between"} align={"center"}>
+        <Title>Positions</Title>
+        <Button onClick={createFn}>Create</Button>
+      </Flex>
       <ul>
-        {positions.map((el) => (
-          <li key={el.id}>
-            {el.name}
-            <button>delete</button>
-            <button>update</button>
-          </li>
-        ))}
+        <Stack>
+          {positions.map((el) => (
+            <li
+              key={el.id}
+              style={{ border: "1px solid gray", padding: 10, borderRadius: 5 }}
+            >
+              <Flex gap={20} align={"center"}>
+                {el.name}
+                <Button onClick={() => deleteFn(el.id)}>Delete</Button>
+                <Button onClick={() => updateFn(el)}>Update</Button>
+              </Flex>
+            </li>
+          ))}
+        </Stack>
       </ul>
-    </div>
+    </Stack>
   );
 };
 

@@ -1,9 +1,11 @@
+import { Flex } from "@mantine/core";
+
 const Header = () => {
   return (
-    <div>
+    <Flex justify={"end"} bg="red" w="100vw" h={50} align={'center'} px={20}>
       Header
-    </div>
-  )
-}
+    </Flex>
+  );
+};
 
-export default Header
+export default Header;

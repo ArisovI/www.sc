@@ -1,10 +1,18 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://bd3cfa7a1652.ngrok-free.app/api/v1",
+  baseURL: "https://c679fc9ce2e9.ngrok-free.app/api/v1",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
     "ngrok-skip-browser-warning": "true",
   },
+});
+
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("access_token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
